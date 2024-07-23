@@ -2,12 +2,16 @@ import { QuestionsRepository } from "@/domain/forum/application/repositories/que
 import { Question } from "@/domain/forum/enterprise/entities";
 
 export class InMemoryQuestionsRepository implements QuestionsRepository {
-  private items: Question[];
+  private _items: Question[];
+
+  get items(): Question[] {
+    return this._items;
+  }
 
   constructor() {
-    this.items = [];
+    this._items = [];
   }
   async create(question: Question): Promise<void> {
-    this.items.push(question);
+    this._items.push(question);
   }
 }

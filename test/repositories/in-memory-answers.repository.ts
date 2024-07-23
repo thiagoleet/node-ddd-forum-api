@@ -2,12 +2,16 @@ import { AnswersRepository } from "@/domain/forum/application/repositories/answe
 import { Answer } from "@/domain/forum/enterprise/entities";
 
 export class InMemoryAnswersRepository implements AnswersRepository {
-  private items: Answer[];
+  private _items: Answer[];
+
+  get items(): Answer[] {
+    return this._items;
+  }
 
   constructor() {
-    this.items = [];
+    this._items = [];
   }
   async create(answer: Answer): Promise<void> {
-    this.items.push(answer);
+    this._items.push(answer);
   }
 }

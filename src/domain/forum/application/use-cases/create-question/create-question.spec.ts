@@ -1,9 +1,8 @@
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
-import { QuestionsRepository } from "../../repositories/questions.repository";
 import { CreateQuestionUseCase } from "./create-question";
 
 describe("CreateQuestionUseCase", () => {
-  let repository: QuestionsRepository;
+  let repository: InMemoryQuestionsRepository;
   let sut: CreateQuestionUseCase;
 
   beforeEach(() => {
@@ -19,5 +18,6 @@ describe("CreateQuestionUseCase", () => {
     });
 
     expect(question.id).toBeTruthy();
+    expect(repository.items[0].id).toEqual(question.id);
   });
 });
