@@ -1,6 +1,6 @@
 import { Answer } from '@/domain/forum/enterprise/entities'
 import { UniqueEntityID } from '@/domain/forum/enterprise/entities/value-objects'
-import { AnswersRepository } from '../repositories/answers.repository'
+import { AnswersRepository } from '../../repositories/answers.repository'
 
 type AnswerQuestionUseCaseInput = {
   authorId: string

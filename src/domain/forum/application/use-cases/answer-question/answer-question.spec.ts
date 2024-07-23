@@ -1,5 +1,5 @@
-import { AnswerQuestionUseCase } from './answer-question'
-import { AnswersRepository } from '../repositories/answers.repository'
+import { AnswerQuestionUseCase } from '.'
+import { AnswersRepository } from '../../repositories/answers.repository'
 
 const mockAnswersRepository: AnswersRepository = {
   create: async () => {},
