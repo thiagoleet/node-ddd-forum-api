@@ -1,18 +1,23 @@
-import { AnswerQuestionUseCase } from '.'
-import { AnswersRepository } from '../../repositories/answers.repository'
+import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers.repository";
+import { AnswerQuestionUseCase } from ".";
 
-const mockAnswersRepository: AnswersRepository = {
-  create: async () => {},
-}
+describe("AnswerQuestionUseCase", () => {
+  let repository: InMemoryAnswersRepository;
+  let sut: AnswerQuestionUseCase;
 
-test('create an answer question', async () => {
-  const answeQuestion = new AnswerQuestionUseCase(mockAnswersRepository)
+  beforeEach(() => {
+    repository = new InMemoryAnswersRepository();
+    sut = new AnswerQuestionUseCase(repository);
+  });
 
-  const answer = await answeQuestion.execute({
-    questionId: 'question-id',
-    authorId: 'instructor-id',
-    content: 'New Answer',
-  })
+  test("create an answer question", async () => {
+    const { answer } = await sut.execute({
+      questionId: "question-id",
+      authorId: "instructor-id",
+      content: "New Answer",
+    });
 
-  expect(answer.content).toBe('New Answer')
-})
+    expect(answer.content).toBe("New Answer");
+    expect(repository.items[0].id).toEqual(answer.id);
+  });
+});
