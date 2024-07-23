@@ -1,4 +1,4 @@
-import { Entity } from "../../core/entities";
+import { Entity } from "@/core/entities";
 import { UniqueEntityID } from "./value-objects";
 
 type StudentProps = {

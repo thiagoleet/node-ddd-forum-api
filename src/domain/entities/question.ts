@@ -1,7 +1,7 @@
-import { Slug, UniqueEntityID } from "./value-objects";
-import { Entity } from "../../core/entities";
-import { Optional } from "../../core/types/optional";
 import dayjs from "dayjs";
+import { Entity } from "@/core/entities";
+import { Optional } from "@/core/types/optional";
+import { Slug, UniqueEntityID } from "./value-objects";
 
 type QuestionProps = {
   authorId: UniqueEntityID;
