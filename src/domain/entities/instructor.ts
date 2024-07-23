@@ -1,14 +1,14 @@
-import { Entity } from "@/core/entities";
-import { UniqueEntityID } from "./value-objects";
+import { Entity } from '@/core/entities'
+import { UniqueEntityID } from './value-objects'
 
 type InstructorProps = {
-  name: string;
-};
+  name: string
+}
 
 export class Instructor extends Entity<InstructorProps> {
   static create(props: InstructorProps, id?: UniqueEntityID): Instructor {
-    const instructor = new Instructor(props, id);
+    const instructor = new Instructor(props, id)
 
-    return instructor;
+    return instructor
   }
 }
