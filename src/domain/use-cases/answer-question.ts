@@ -1,4 +1,5 @@
 import { Answer } from "../entities/answer";
+import { UniqueEntityID } from "../entities/value-objects";
 import { AnswersRepository } from "../repositories/answers.repository";
 
 type AnswerQuestionUseCaseInput = {
@@ -15,7 +16,11 @@ export class AnswerQuestionUseCase {
     questionId,
     content,
   }: AnswerQuestionUseCaseInput): Promise<Answer> {
-    const answer = new Answer({ content, authorId, questionId });
+    const answer = Answer.create({
+      content,
+      authorId: new UniqueEntityID(authorId),
+      questionId: new UniqueEntityID(questionId),
+    });
 
     await this.repository.create(answer);
 
