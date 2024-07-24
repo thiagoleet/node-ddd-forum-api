@@ -1,6 +1,6 @@
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
 import { GetQuestionBySlugUseCase } from "./getQuestionBySlug";
-import { makeQuetion } from "test/factories/make-question";
+import { makeQuestion } from "test/factories/make-question";
 
 describe("GetQuestionBySlugUseCase", () => {
   let repository: InMemoryQuestionsRepository;
@@ -12,7 +12,9 @@ describe("GetQuestionBySlugUseCase", () => {
   });
 
   it("should be able to get a question by slug", async () => {
-    const createQuestion = makeQuetion();
+    const createQuestion = makeQuestion({
+      title: "New Question",
+    });
 
     await repository.create(createQuestion);
 
