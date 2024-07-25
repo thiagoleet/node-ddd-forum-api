@@ -1,3 +1,8 @@
+import {
+  calculateOffset,
+  ITEMS_PER_PAGE,
+  PaginationParams,
+} from "@/core/repositories/pagination-params";
 import { AnswersRepository } from "@/domain/forum/application/repositories/answers.repository";
 import { Answer } from "@/domain/forum/enterprise/entities";
 
@@ -22,5 +27,16 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
   async delete(answer: Answer): Promise<void> {
     this._items = this._items.filter((item) => item.id !== answer.id);
+  }
+
+  async findManyByQuestionId(
+    questionId: string,
+    params: PaginationParams
+  ): Promise<Answer[]> {
+    const answers = this.items
+      .filter((item) => item.questionId.toString() === questionId)
+      .slice(...calculateOffset(params.page, ITEMS_PER_PAGE));
+
+    return answers;
   }
 }
