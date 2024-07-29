@@ -1,7 +1,9 @@
 import { QuestionComment } from "@/domain/forum/enterprise/entities";
+import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { QuestionCommentRepository } from "../../repositories/question-comments.repository";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { Either, left, right } from "@/core/either";
+import { ResourceNotFoundError } from "../errors";
 
 interface CommentOnQuestionInput {
   authorId: string;
@@ -9,9 +11,10 @@ interface CommentOnQuestionInput {
   content: string;
 }
 
-interface CommentOnQuestionResponse {
-  comment: QuestionComment;
-}
+type CommentOnQuestionResponse = Either<
+  ResourceNotFoundError,
+  { comment: QuestionComment }
+>;
 
 export class CommentOnQuestionUseCase {
   constructor(
@@ -27,7 +30,7 @@ export class CommentOnQuestionUseCase {
     const question = await this.questionsRepository.findById(questionId);
 
     if (!question) {
-      throw new Error("Question not found");
+      return left(new ResourceNotFoundError("Question not found"));
     }
 
     const comment = QuestionComment.create({
@@ -38,6 +41,6 @@ export class CommentOnQuestionUseCase {
 
     await this.questionCommentsRepository.create(comment);
 
-    return { comment };
+    return right({ comment });
   }
 }

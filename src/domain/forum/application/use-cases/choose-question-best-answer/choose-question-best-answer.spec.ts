@@ -4,6 +4,7 @@ import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer";
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { makeAnswer } from "test/factories/make-answer";
+import { NotAllowedError, ResourceNotFoundError } from "../errors";
 
 describe("ChooseQuestionBestAnswerUseCase", () => {
   let questionsRepository: InMemoryQuestionsRepository;
@@ -51,21 +52,23 @@ describe("ChooseQuestionBestAnswerUseCase", () => {
     });
     await answersRepository.create(createAnswer);
 
-    await expect(() =>
-      sut.execute({
-        answerId: createAnswer.id.toString(),
-        authorId: "wrong-author-id",
-      })
-    ).rejects.toThrowError();
+    const result = await sut.execute({
+      answerId: createAnswer.id.toString(),
+      authorId: "wrong-author-id",
+    });
+
+    expect(result.isLeft()).toBeTruthy();
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 
   it("should not be able to choose a non existent answer", async () => {
-    await expect(() =>
-      sut.execute({
-        answerId: "invalid-id",
-        authorId: "author-id",
-      })
-    ).rejects.toThrowError();
+    const result = await sut.execute({
+      answerId: "invalid-id",
+      authorId: "author-id",
+    });
+
+    expect(result.isLeft()).toBeTruthy();
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError);
   });
 
   it("should not be able to choose an answer to a non existent question", async () => {
@@ -74,11 +77,12 @@ describe("ChooseQuestionBestAnswerUseCase", () => {
     });
     await answersRepository.create(createAnswer);
 
-    await expect(() =>
-      sut.execute({
-        answerId: createAnswer.id.toString(),
-        authorId: "author-id",
-      })
-    ).rejects.toThrowError();
+    const result = await sut.execute({
+      answerId: createAnswer.id.toString(),
+      authorId: "author-id",
+    });
+
+    expect(result.isLeft()).toBeTruthy();
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError);
   });
 });
