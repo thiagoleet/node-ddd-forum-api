@@ -1,12 +1,12 @@
 import { Entity } from "@/core/entities";
 import { UniqueEntityID } from "./value-objects";
 
-export type CommentProps = {
+export interface CommentProps {
   authorId: UniqueEntityID;
   content: string;
   createdAt: Date;
   updatedAt?: Date;
-};
+}
 
 export abstract class Comment<
   Props extends CommentProps,

@@ -1,14 +1,14 @@
 import { Question } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 
-type FetchRecentQuestionsUseCaseInput = {
+interface FetchRecentQuestionsUseCaseInput {
   page: number;
-};
+}
 
-type FetchRecentQuestionsUseCaseResponse = {
+interface FetchRecentQuestionsUseCaseResponse {
   questions: Question[];
   page: number;
-};
+}
 
 export class FetchRecentQuestionsUseCase {
   constructor(private repository: QuestionsRepository) {}

@@ -1,13 +1,13 @@
 import { QuestionsRepository } from "../../repositories/questions.repository";
 
-type EditQuestionUseCaseInput = {
+interface EditQuestionUseCaseInput {
   authorId: string;
   questionId: string;
   title: string;
   content: string;
-};
+}
 
-type EditQuestionUseCaseResponse = {};
+interface EditQuestionUseCaseResponse {}
 
 export class EditQuestionUseCase {
   constructor(private repository: QuestionsRepository) {}

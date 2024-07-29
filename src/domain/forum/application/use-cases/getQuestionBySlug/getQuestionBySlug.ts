@@ -1,13 +1,13 @@
 import { Question } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 
-type GetQuestionBySlugUseCaseInput = {
+interface GetQuestionBySlugUseCaseInput {
   slug: string;
-};
+}
 
-type GetQuestionBySlugUseCaseResponse = {
+interface GetQuestionBySlugUseCaseResponse {
   question: Question;
-};
+}
 
 export class GetQuestionBySlugUseCase {
   constructor(private repository: QuestionsRepository) {}

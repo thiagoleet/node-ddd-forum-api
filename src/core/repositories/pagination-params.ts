@@ -1,6 +1,6 @@
-export type PaginationParams = {
+export interface PaginationParams {
   page: number;
-};
+}
 
 export const ITEMS_PER_PAGE = 20;
 

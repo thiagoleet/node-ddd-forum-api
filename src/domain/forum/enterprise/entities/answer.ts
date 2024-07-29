@@ -2,13 +2,13 @@ import { Entity } from "@/core/entities";
 import { Optional } from "@/core/types/optional";
 import { UniqueEntityID } from "./value-objects";
 
-export type AnswerProps = {
+export interface AnswerProps {
   authorId: UniqueEntityID;
   questionId: UniqueEntityID;
   content: string;
   createdAt: Date;
   updatedAt?: Date;
-};
+}
 
 export class Answer extends Entity<AnswerProps> {
   get authorId() {

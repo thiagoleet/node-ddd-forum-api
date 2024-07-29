@@ -3,7 +3,7 @@ import { Entity } from "@/core/entities";
 import { Optional } from "@/core/types/optional";
 import { Slug, UniqueEntityID } from "./value-objects";
 
-export type QuestionProps = {
+export interface QuestionProps {
   authorId: UniqueEntityID;
   bestAnswerId?: UniqueEntityID;
   title: string;
@@ -11,7 +11,7 @@ export type QuestionProps = {
   slug: Slug;
   createdAt: Date;
   updatedAt?: Date;
-};
+}
 
 export class Question extends Entity<QuestionProps> {
   get authorId() {

@@ -3,15 +3,15 @@ import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects
 import { AnswersRepository } from "../../repositories/answers.repository";
 import { AnswerCommentRepository } from "../../repositories/answer-comments.repository";
 
-type CommentOnAnswerUseCaseInput = {
+interface CommentOnAnswerUseCaseInput {
   authorId: string;
   answerId: string;
   content: string;
-};
+}
 
-type CommentOnAnswerUseCaseResponse = {
+interface CommentOnAnswerUseCaseResponse {
   comment: AnswerComment;
-};
+}
 
 export class CommentOnAnswerUseCase {
   constructor(

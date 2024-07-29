@@ -2,14 +2,14 @@ import { Question } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { AnswersRepository } from "../../repositories/answers.repository";
 
-type ChooseQuestionBestAnswerUseCaseInput = {
+interface ChooseQuestionBestAnswerUseCaseInput {
   answerId: string;
   authorId: string;
-};
+}
 
-type ChooseQuestionBestAnswerUseCaseResponse = {
+interface ChooseQuestionBestAnswerUseCaseResponse {
   question: Question;
-};
+}
 
 export class ChooseQuestionBestAnswerUseCase {
   constructor(

@@ -2,15 +2,15 @@ import { Answer } from "@/domain/forum/enterprise/entities";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { AnswersRepository } from "../../repositories/answers.repository";
 
-type AnswerQuestionUseCaseInput = {
+interface AnswerQuestionUseCaseInput {
   authorId: string;
   questionId: string;
   content: string;
-};
+}
 
-type AnswerQuestionUseCaseResponse = {
+interface AnswerQuestionUseCaseResponse {
   answer: Answer;
-};
+}
 
 export class AnswerQuestionUseCase {
   constructor(private repository: AnswersRepository) {}

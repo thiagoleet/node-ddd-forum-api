@@ -1,11 +1,11 @@
 import { AnswersRepository } from "../../repositories/answers.repository";
 
-type DeleteAnswerUseCaseInput = {
+interface DeleteAnswerUseCaseInput {
   answerId: string;
   authorId: string;
-};
+}
 
-type DeleteAnswerUseCaseResponse = {};
+interface DeleteAnswerUseCaseResponse {}
 
 export class DeleteAnswerUseCase {
   constructor(private repository: AnswersRepository) {}
