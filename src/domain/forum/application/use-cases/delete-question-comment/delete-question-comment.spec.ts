@@ -1,14 +1,14 @@
 import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
-import { InMemoryQuestionCommentssRepository } from "test/repositories/in-memory-question-comments.repository";
+import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { makeQuestionComment } from "test/factories/make-question-comment";
 
 describe("DeleteQuestionCommentUseCase", () => {
-  let repository: InMemoryQuestionCommentssRepository;
+  let repository: InMemoryQuestionCommentsRepository;
   let sut: DeleteQuestionCommentUseCase;
 
   beforeEach(() => {
-    repository = new InMemoryQuestionCommentssRepository();
+    repository = new InMemoryQuestionCommentsRepository();
     sut = new DeleteQuestionCommentUseCase(repository);
   });
 

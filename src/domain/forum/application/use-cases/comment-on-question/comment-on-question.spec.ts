@@ -1,16 +1,16 @@
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
 import { CommentOnQuestionUseCase } from "./comment-on-question";
-import { InMemoryQuestionCommentssRepository } from "test/repositories/in-memory-question-comments.repository";
+import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments.repository";
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 
 describe("CommentOnQuestionUseCase", () => {
-  let questionCommentsRepository: InMemoryQuestionCommentssRepository;
+  let questionCommentsRepository: InMemoryQuestionCommentsRepository;
   let questionsRepository: InMemoryQuestionsRepository;
   let sut: CommentOnQuestionUseCase;
 
   beforeEach(() => {
-    questionCommentsRepository = new InMemoryQuestionCommentssRepository();
+    questionCommentsRepository = new InMemoryQuestionCommentsRepository();
     questionsRepository = new InMemoryQuestionsRepository();
     sut = new CommentOnQuestionUseCase(
       questionCommentsRepository,
