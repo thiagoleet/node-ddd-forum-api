@@ -1,7 +1,7 @@
 import { QuestionComment } from "@/domain/forum/enterprise/entities";
+import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { QuestionCommentRepository } from "../../repositories/question-comments.repository";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 
 interface CommentOnQuestionInput {
   authorId: string;

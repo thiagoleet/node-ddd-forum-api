@@ -2,6 +2,7 @@ import { DeleteAnswerCommentUseCase } from "./delete-answer-comment";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answer-comments.repository";
 import { makeAnswerComment } from "test/factories/make-answer-comment";
+import { NotAllowedError, ResourceNotFoundError } from "../errors";
 
 describe("DeleteAnswerCommentUseCase", () => {
   let repository: InMemoryAnswerCommentsRepository;
@@ -30,12 +31,12 @@ describe("DeleteAnswerCommentUseCase", () => {
   });
 
   it("should not be able to delete a comment on a answer if it not exists/matches", async () => {
-    await expect(() =>
-      sut.execute({
-        authorId: "author-id",
-        answerCommentId: "answer-id",
-      })
-    ).rejects.toThrowError();
+    const result = await sut.execute({
+      authorId: "author-id",
+      answerCommentId: "answer-id",
+    });
+    expect(result.isLeft()).toBeTruthy();
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError);
   });
 
   it("should not be able to delete another user answer comment", async () => {
@@ -45,11 +46,12 @@ describe("DeleteAnswerCommentUseCase", () => {
     );
     repository.items.push(comment);
 
-    await expect(() =>
-      sut.execute({
-        authorId: "wrong-author-id",
-        answerCommentId: "answer-id",
-      })
-    ).rejects.toThrowError();
+    const result = await sut.execute({
+      authorId: "wrong-author-id",
+      answerCommentId: "comment-id",
+    });
+
+    expect(result.isLeft()).toBeTruthy();
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });
