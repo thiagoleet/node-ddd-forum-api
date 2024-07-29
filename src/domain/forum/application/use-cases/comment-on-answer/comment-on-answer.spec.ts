@@ -3,6 +3,8 @@ import { CommentOnAnswerUseCase } from "./comment-on-answer";
 import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answer-comments.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { makeAnswer } from "test/factories/make-answer";
+import { ResourceNotFoundError } from "../errors";
+import { AnswerComment } from "@/domain/forum/enterprise/entities";
 
 describe("CommentOnAnswerUseCase", () => {
   let answerCommentsRepository: InMemoryAnswerCommentsRepository;
@@ -22,11 +24,13 @@ describe("CommentOnAnswerUseCase", () => {
     const answer = makeAnswer({}, new UniqueEntityID("answer-id"));
     answersRepository.items.push(answer);
 
-    const { comment } = await sut.execute({
+    const { value } = await sut.execute({
       authorId: "instructor-id",
       answerId: "answer-id",
       content: "Content",
     });
+
+    const { comment } = value as { comment: AnswerComment };
 
     expect(comment.id).toBeTruthy();
     expect(answerCommentsRepository.items[0].id).toEqual(comment.id);
@@ -34,12 +38,13 @@ describe("CommentOnAnswerUseCase", () => {
   });
 
   it("should not be able to comment on an answer if it not exists/matches", async () => {
-    await expect(() =>
-      sut.execute({
-        authorId: "instructor-id",
-        answerId: "answer-id",
-        content: "Content",
-      })
-    ).rejects.toThrowError();
+    const result = await sut.execute({
+      authorId: "instructor-id",
+      answerId: "answer-id",
+      content: "Content",
+    });
+
+    expect(result.isLeft()).toBeTruthy();
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError);
   });
 });

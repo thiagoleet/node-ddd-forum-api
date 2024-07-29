@@ -2,6 +2,7 @@ import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects
 import { DeleteAnswerUseCase } from "./delete-answer";
 import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers.repository";
 import { makeAnswer } from "test/factories/make-answer";
+import { NotAllowedError, ResourceNotFoundError } from "../errors";
 
 describe("DeleteAnswerUseCase", () => {
   let repository: InMemoryAnswersRepository;
@@ -27,12 +28,13 @@ describe("DeleteAnswerUseCase", () => {
   });
 
   it("should not be able to delete an answer if not found", async () => {
-    await expect(() =>
-      sut.execute({
-        answerId: "invalid-id",
-        authorId: "author-1",
-      })
-    ).rejects.toThrowError();
+    const result = await sut.execute({
+      answerId: "invalid-id",
+      authorId: "author-1",
+    });
+
+    expect(result.isLeft()).toBeTruthy();
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError);
   });
 
   it("should not allow to delete an answer if the authorId is different", async () => {
@@ -41,11 +43,12 @@ describe("DeleteAnswerUseCase", () => {
     });
     await repository.create(createQuestion);
 
-    await expect(() =>
-      sut.execute({
-        answerId: createQuestion.id.toString(),
-        authorId: "wrong-author-id",
-      })
-    ).rejects.toThrowError();
+    const result = await sut.execute({
+      answerId: createQuestion.id.toString(),
+      authorId: "wrong-author-id",
+    });
+
+    expect(result.isLeft()).toBeTruthy();
+    expect(result.value).toBeInstanceOf(NotAllowedError);
   });
 });
