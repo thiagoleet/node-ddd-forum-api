@@ -2,12 +2,12 @@ import { Question } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { AnswersRepository } from "../../repositories/answers.repository";
 
-interface ChooseQuestionBestAnswerUseCaseInput {
+interface ChooseQuestionBestAnswerInput {
   answerId: string;
   authorId: string;
 }
 
-interface ChooseQuestionBestAnswerUseCaseResponse {
+interface ChooseQuestionBestAnswerResponse {
   question: Question;
 }
 
@@ -20,7 +20,7 @@ export class ChooseQuestionBestAnswerUseCase {
   async execute({
     answerId,
     authorId,
-  }: ChooseQuestionBestAnswerUseCaseInput): Promise<ChooseQuestionBestAnswerUseCaseResponse> {
+  }: ChooseQuestionBestAnswerInput): Promise<ChooseQuestionBestAnswerResponse> {
     const answer = await this.answersRepository.findById(answerId);
 
     if (!answer) {

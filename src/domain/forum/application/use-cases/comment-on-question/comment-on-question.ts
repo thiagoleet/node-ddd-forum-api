@@ -3,13 +3,13 @@ import { QuestionsRepository } from "../../repositories/questions.repository";
 import { QuestionCommentRepository } from "../../repositories/question-comments.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 
-interface CommentOnQuestionUseCaseInput {
+interface CommentOnQuestionInput {
   authorId: string;
   questionId: string;
   content: string;
 }
 
-interface CommentOnQuestionUseCaseResponse {
+interface CommentOnQuestionResponse {
   comment: QuestionComment;
 }
 
@@ -23,7 +23,7 @@ export class CommentOnQuestionUseCase {
     authorId,
     questionId,
     content,
-  }: CommentOnQuestionUseCaseInput): Promise<CommentOnQuestionUseCaseResponse> {
+  }: CommentOnQuestionInput): Promise<CommentOnQuestionResponse> {
     const question = await this.questionsRepository.findById(questionId);
 
     if (!question) {

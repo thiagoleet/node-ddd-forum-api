@@ -2,13 +2,13 @@ import { Question } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 
-interface CreateQuestionUseCaseInput {
+interface CreateQuestionInput {
   authorId: string;
   title: string;
   content: string;
 }
 
-interface CreateQuestionUseCaseResponse {
+interface CreateQuestionResponse {
   question: Question;
 }
 
@@ -19,7 +19,7 @@ export class CreateQuestionUseCase {
     authorId,
     title,
     content,
-  }: CreateQuestionUseCaseInput): Promise<CreateQuestionUseCaseResponse> {
+  }: CreateQuestionInput): Promise<CreateQuestionResponse> {
     const question = Question.create({
       authorId: new UniqueEntityID(authorId),
       content,

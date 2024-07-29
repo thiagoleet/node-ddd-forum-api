@@ -1,11 +1,11 @@
 import { Question } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 
-interface GetQuestionBySlugUseCaseInput {
+interface GetQuestionBySlugInput {
   slug: string;
 }
 
-interface GetQuestionBySlugUseCaseResponse {
+interface GetQuestionBySlugResponse {
   question: Question;
 }
 
@@ -14,7 +14,7 @@ export class GetQuestionBySlugUseCase {
 
   async execute({
     slug,
-  }: GetQuestionBySlugUseCaseInput): Promise<GetQuestionBySlugUseCaseResponse> {
+  }: GetQuestionBySlugInput): Promise<GetQuestionBySlugResponse> {
     const question = await this.repository.findBySlug(slug);
 
     if (!question) {

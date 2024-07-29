@@ -1,12 +1,12 @@
 import { Answer } from "@/domain/forum/enterprise/entities";
 import { AnswersRepository } from "../../repositories/answers.repository";
 
-interface FetchQuestionAnswersUseCaseInput {
+interface FetchQuestionAnswersInput {
   page: number;
   questionId: string;
 }
 
-interface FetchQuestionAnswersUseCaseResponse {
+interface FetchQuestionAnswersResponse {
   answers: Answer[];
 }
 
@@ -16,7 +16,7 @@ export class FetchQuestionAnswersUseCase {
   async execute({
     questionId,
     page,
-  }: FetchQuestionAnswersUseCaseInput): Promise<FetchQuestionAnswersUseCaseResponse> {
+  }: FetchQuestionAnswersInput): Promise<FetchQuestionAnswersResponse> {
     const answers = await this.repository.findManyByQuestionId(questionId, {
       page,
     });

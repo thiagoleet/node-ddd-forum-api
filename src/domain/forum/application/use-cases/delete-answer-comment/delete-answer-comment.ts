@@ -1,11 +1,11 @@
 import { AnswerCommentRepository } from "../../repositories/answer-comments.repository";
 
-interface DeleteAnswerCommentUseCaseInput {
+interface DeleteAnswerCommentInput {
   authorId: string;
   answerCommentId: string;
 }
 
-interface DeleteAnswerCommentUseCaseResponse {}
+interface DeleteAnswerCommentResponse {}
 
 export class DeleteAnswerCommentUseCase {
   constructor(private repository: AnswerCommentRepository) {}
@@ -13,7 +13,7 @@ export class DeleteAnswerCommentUseCase {
   async execute({
     authorId,
     answerCommentId,
-  }: DeleteAnswerCommentUseCaseInput): Promise<DeleteAnswerCommentUseCaseResponse> {
+  }: DeleteAnswerCommentInput): Promise<DeleteAnswerCommentResponse> {
     const comment = await this.repository.findById(answerCommentId);
 
     if (!comment) {
