@@ -1,4 +1,7 @@
-import { Question } from "@/domain/forum/enterprise/entities";
+import {
+  Question,
+  QuestionAttachment,
+} from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { Either, right } from "@/core/either";
@@ -7,6 +10,7 @@ interface CreateQuestionInput {
   authorId: string;
   title: string;
   content: string;
+  attachmentIds: string[];
 }
 
 type CreateQuestionResponse = Either<null, { question: Question }>;
@@ -18,12 +22,22 @@ export class CreateQuestionUseCase {
     authorId,
     title,
     content,
+    attachmentIds,
   }: CreateQuestionInput): Promise<CreateQuestionResponse> {
     const question = Question.create({
       authorId: new UniqueEntityID(authorId),
       content,
       title,
     });
+
+    const attachments = attachmentIds.map((attachmentId) =>
+      QuestionAttachment.create({
+        attachmentId: new UniqueEntityID(attachmentId),
+        questionId: question.id,
+      })
+    );
+
+    question.attachments = attachments;
 
     await this.repository.create(question);
 
