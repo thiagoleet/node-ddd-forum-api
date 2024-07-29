@@ -1,15 +1,15 @@
-import { DeleteCommentOnQuestionUseCase } from "./delete-question-comment";
+import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
 import { InMemoryQuestionCommentssRepository } from "test/repositories/in-memory-question-comments.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { makeQuestionComment } from "test/factories/make-question-comment";
 
-describe("DeleteCommentOnQuestionUseCase", () => {
+describe("DeleteQuestionCommentUseCase", () => {
   let repository: InMemoryQuestionCommentssRepository;
-  let sut: DeleteCommentOnQuestionUseCase;
+  let sut: DeleteQuestionCommentUseCase;
 
   beforeEach(() => {
     repository = new InMemoryQuestionCommentssRepository();
-    sut = new DeleteCommentOnQuestionUseCase(repository);
+    sut = new DeleteQuestionCommentUseCase(repository);
   });
 
   it("should be able to delete a comment on a question", async () => {
