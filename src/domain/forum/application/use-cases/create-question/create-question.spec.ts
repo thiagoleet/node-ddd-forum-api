@@ -1,6 +1,7 @@
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
 import { CreateQuestionUseCase } from "./create-question";
 import { Question } from "@/domain/forum/enterprise/entities";
+import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 
 describe("CreateQuestionUseCase", () => {
   let repository: InMemoryQuestionsRepository;
@@ -16,11 +17,22 @@ describe("CreateQuestionUseCase", () => {
       authorId: "instructor-id",
       title: "New Question",
       content: "Content",
+      attachmentIds: ["attachment-id-1", "attachment-id-2"],
     });
 
     const { question } = value as { question: Question };
+    const [item] = repository.items;
 
     expect(question.id).toBeTruthy();
-    expect(repository.items[0].id).toEqual(question.id);
+    expect(item.id).toEqual(question.id);
+    expect(item.attachments.currentItems).toHaveLength(2);
+    expect(item.attachments.currentItems).toEqual([
+      expect.objectContaining({
+        attachmentId: new UniqueEntityID("attachment-id-1"),
+      }),
+      expect.objectContaining({
+        attachmentId: new UniqueEntityID("attachment-id-2"),
+      }),
+    ]);
   });
 });

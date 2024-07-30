@@ -9,4 +9,5 @@ export interface AnswersRepository {
     questionId: string,
     params: PaginationParams
   ): Promise<Answer[]>;
+  save(answer: Answer): Promise<void>;
 }

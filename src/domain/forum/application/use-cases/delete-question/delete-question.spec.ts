@@ -3,28 +3,44 @@ import { DeleteQuestionUseCase } from "./delete-question";
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { NotAllowedError, ResourceNotFoundError } from "../errors";
+import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments.repository";
+import { makeQuestionAttachment } from "test/factories/make-question-attachment";
 
 describe("DeleteQuestionUseCase", () => {
   let repository: InMemoryQuestionsRepository;
+  let attachmentsRepository: InMemoryQuestionAttachmentsRepository;
   let sut: DeleteQuestionUseCase;
 
   beforeEach(() => {
-    repository = new InMemoryQuestionsRepository();
+    attachmentsRepository = new InMemoryQuestionAttachmentsRepository();
+    repository = new InMemoryQuestionsRepository(attachmentsRepository);
+
     sut = new DeleteQuestionUseCase(repository);
   });
 
   it("should be able to delete a question", async () => {
-    const createQuestion = makeQuestion({
+    const newQuestion = makeQuestion({
       authorId: new UniqueEntityID("author-1"),
     });
-    await repository.create(createQuestion);
+    await repository.create(newQuestion);
+
+    // Pre populating Attachments Repository
+    for (let i = 1; i <= 2; i++) {
+      await attachmentsRepository.create(
+        makeQuestionAttachment({
+          questionId: newQuestion.id,
+          attachmentId: new UniqueEntityID(`attachment-id-${i}`),
+        })
+      );
+    }
 
     await sut.execute({
-      questionId: createQuestion.id.toString(),
+      questionId: newQuestion.id.toString(),
       authorId: "author-1",
     });
 
-    expect(repository.items.length).toBe(0);
+    expect(repository.items).toHaveLength(0);
+    expect(attachmentsRepository.items).toHaveLength(0);
   });
 
   it("should not be able to delete a question if not found", async () => {
