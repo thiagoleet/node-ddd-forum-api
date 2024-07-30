@@ -3,6 +3,7 @@ import {
   ITEMS_PER_PAGE,
   PaginationParams,
 } from "@/core/repositories/pagination-params";
+import { QuestionAttachmentsRepository } from "@/domain/forum/application/repositories/question-attachments.repository";
 import { QuestionsRepository } from "@/domain/forum/application/repositories/questions.repository";
 import { Question } from "@/domain/forum/enterprise/entities";
 
@@ -13,7 +14,7 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
     return this._items;
   }
 
-  constructor() {
+  constructor(private attachmentsRepository?: QuestionAttachmentsRepository) {
     this._items = [];
   }
 
@@ -23,6 +24,10 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
 
   async delete(question: Question): Promise<void> {
     this._items = this._items.filter((item) => item.id !== question.id);
+
+    await this.attachmentsRepository?.deleteManyByQuestionId(
+      question.id.toString()
+    );
   }
 
   async findById(id: string): Promise<Question | null> {
