@@ -1,6 +1,6 @@
-import { UniqueEntityID } from "./value-objects";
 import { Optional } from "@/core/types/optional";
-import { CommentProps, Comment } from "./comment";
+import { CommentProps, Comment } from "../base-classes/comment";
+import { UniqueEntityID } from "../value-objects";
 
 export interface QuestionCommentProps extends CommentProps {
   questionId: UniqueEntityID;

@@ -1,5 +1,5 @@
 import { Entity } from "@/core/entities";
-import { UniqueEntityID } from "./value-objects";
+import { UniqueEntityID } from "../value-objects";
 
 interface AnswerAttachmentProps {
   answerId: UniqueEntityID;
