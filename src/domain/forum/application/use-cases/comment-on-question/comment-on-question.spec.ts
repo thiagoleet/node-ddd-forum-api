@@ -33,8 +33,10 @@ describe("CommentOnQuestionUseCase", () => {
     const { comment } = value as { comment: QuestionComment };
 
     expect(comment.id).toBeTruthy();
-    expect(questionCommentsRepository.items[0].id).toEqual(comment.id);
-    expect(questionCommentsRepository.items[0].questionId).toEqual(question.id);
+    expect(questionCommentsRepository._items[0].id).toEqual(comment.id);
+    expect(questionCommentsRepository._items[0].questionId).toEqual(
+      question.id
+    );
   });
 
   it("should not be able to comment on a question if it not exists/matches", async () => {

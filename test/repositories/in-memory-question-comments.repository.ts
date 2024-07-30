@@ -9,18 +9,22 @@ import { QuestionComment } from "@/domain/forum/enterprise/entities";
 export class InMemoryQuestionCommentsRepository
   implements QuestionCommentRepository
 {
-  items: QuestionComment[] = [];
+  private _items: QuestionComment[] = [];
+
+  get items() {
+    return this._items;
+  }
 
   async create(comment: QuestionComment): Promise<void> {
-    this.items.push(comment);
+    this._items.push(comment);
   }
 
   async findById(id: string): Promise<QuestionComment | null> {
-    return this.items.find((comment) => comment.id.toString() === id) ?? null;
+    return this._items.find((comment) => comment.id.toString() === id) ?? null;
   }
 
   async delete(comment: QuestionComment): Promise<void> {
-    this.items = this.items.filter(
+    this._items = this._items.filter(
       (item) => item.id.toString() !== comment.id.toString()
     );
   }
@@ -29,7 +33,7 @@ export class InMemoryQuestionCommentsRepository
     questionId: string,
     params: PaginationParams
   ): Promise<QuestionComment[]> {
-    const comments = this.items
+    const comments = this._items
       .filter((item) => item.questionId.toString() === questionId)
       .slice(...calculateOffset(params.page, ITEMS_PER_PAGE));
 

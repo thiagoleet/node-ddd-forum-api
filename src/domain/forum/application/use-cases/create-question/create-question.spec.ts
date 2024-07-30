@@ -26,8 +26,8 @@ describe("CreateQuestionUseCase", () => {
 
     expect(question.id).toBeTruthy();
     expect(item.id).toEqual(question.id);
-    expect(item.attachments).toHaveLength(2);
-    expect(item.attachments).toEqual([
+    expect(item.attachments.currentItems).toHaveLength(2);
+    expect(item.attachments.currentItems).toEqual([
       expect.objectContaining({
         attachmentId: new UniqueEntityID("attachment-id-1"),
       }),

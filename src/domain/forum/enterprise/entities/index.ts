@@ -11,6 +11,7 @@ export * from "./answer/answer-comment";
 export * from "./question/question";
 export * from "./question/question-attachment";
 export * from "./question/question-comment";
+export * from "./question/question-attachment-list";
 
 // Author
 export * from "./instructor";

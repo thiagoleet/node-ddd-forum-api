@@ -1,6 +1,7 @@
 import {
   Question,
   QuestionAttachment,
+  QuestionAttachmentList,
 } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
@@ -37,7 +38,7 @@ export class CreateQuestionUseCase {
       })
     );
 
-    question.attachments = attachments;
+    question.attachments = new QuestionAttachmentList(attachments);
 
     await this.repository.create(question);
 
