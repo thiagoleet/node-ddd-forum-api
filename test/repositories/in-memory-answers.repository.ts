@@ -3,6 +3,7 @@ import {
   ITEMS_PER_PAGE,
   PaginationParams,
 } from "@/core/repositories/pagination-params";
+import { AnswerAttachmentsRepository } from "@/domain/forum/application/repositories/answer-attachments.repository";
 import { AnswersRepository } from "@/domain/forum/application/repositories/answers.repository";
 import { Answer } from "@/domain/forum/enterprise/entities";
 
@@ -13,7 +14,7 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     return this._items;
   }
 
-  constructor() {
+  constructor(private attachmentsRepository?: AnswerAttachmentsRepository) {
     this._items = [];
   }
 
@@ -27,6 +28,10 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
   async delete(answer: Answer): Promise<void> {
     this._items = this._items.filter((item) => item.id !== answer.id);
+
+    await this.attachmentsRepository?.deleteManyByAnswerId(
+      answer.id.toString()
+    );
   }
 
   async findManyByQuestionId(
@@ -38,5 +43,13 @@ export class InMemoryAnswersRepository implements AnswersRepository {
       .slice(...calculateOffset(params.page, ITEMS_PER_PAGE));
 
     return answers;
+  }
+
+  async save(question: Answer): Promise<void> {
+    const index = this._items.findIndex((item) => item.id === question.id);
+
+    if (index >= 0) {
+      this._items[index] = question;
+    }
   }
 }

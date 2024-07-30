@@ -6,6 +6,7 @@ export * from "./base-classes/comment";
 export * from "./answer/answer";
 export * from "./answer/answer-attachment";
 export * from "./answer/answer-comment";
+export * from "./answer/answer-attachment-list";
 
 // Question
 export * from "./question/question";

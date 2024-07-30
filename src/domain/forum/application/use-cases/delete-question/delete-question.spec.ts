@@ -40,6 +40,7 @@ describe("DeleteQuestionUseCase", () => {
     });
 
     expect(repository.items).toHaveLength(0);
+    expect(attachmentsRepository.items).toHaveLength(0);
   });
 
   it("should not be able to delete a question if not found", async () => {

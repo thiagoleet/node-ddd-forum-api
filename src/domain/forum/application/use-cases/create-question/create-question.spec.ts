@@ -21,7 +21,6 @@ describe("CreateQuestionUseCase", () => {
     });
 
     const { question } = value as { question: Question };
-
     const [item] = repository.items;
 
     expect(question.id).toBeTruthy();
