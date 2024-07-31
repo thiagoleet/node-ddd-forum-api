@@ -7,7 +7,7 @@ import {
   QuestionAttachment,
   QuestionAttachmentList,
 } from "@/domain/forum/enterprise/entities";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 
 interface EditQuestionInput {
   authorId: string;

@@ -1,4 +1,4 @@
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 
 export abstract class Entity<Props> {
   private _id: UniqueEntityID;

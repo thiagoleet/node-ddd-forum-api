@@ -1,6 +1,6 @@
 import { Entity } from "@/core/entities";
 import { Optional } from "@/core/types/optional";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 
 interface NotificationProps {
   recipientId: UniqueEntityID;

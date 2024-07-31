@@ -2,7 +2,7 @@ import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questio
 import { CommentOnQuestionUseCase } from "./comment-on-question";
 import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments.repository";
 import { makeQuestion } from "test/factories/make-question";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 import { QuestionComment } from "@/domain/forum/enterprise/entities";
 import { ResourceNotFoundError } from "../../errors";
 

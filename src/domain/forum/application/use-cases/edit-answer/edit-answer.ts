@@ -1,5 +1,5 @@
 import { Either, left, right } from "@/core/either";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 import { NotAllowedError, ResourceNotFoundError } from "../../errors";
 import { AnswersRepository } from "../../repositories/answers.repository";
 import { AnswerAttachmentsRepository } from "../../repositories/answer-attachments.repository";

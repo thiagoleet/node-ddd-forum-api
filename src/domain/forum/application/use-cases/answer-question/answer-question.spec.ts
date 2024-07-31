@@ -1,7 +1,7 @@
 import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers.repository";
 import { AnswerQuestionUseCase } from ".";
 import { Answer } from "@/domain/forum/enterprise/entities";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 
 describe("AnswerQuestionUseCase", () => {
   let repository: InMemoryAnswersRepository;

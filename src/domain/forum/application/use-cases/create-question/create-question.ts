@@ -4,7 +4,7 @@ import {
   QuestionAttachmentList,
 } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 import { Either, right } from "@/core/either";
 
 interface CreateQuestionInput {

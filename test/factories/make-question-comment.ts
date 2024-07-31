@@ -3,7 +3,7 @@ import {
   QuestionComment,
   QuestionCommentProps,
 } from "@/domain/forum/enterprise/entities";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 
 export function makeQuestionComment(
   overide: Partial<QuestionCommentProps> = {},

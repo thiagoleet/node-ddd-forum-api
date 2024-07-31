@@ -2,7 +2,7 @@ import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers.r
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
 import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer";
 import { makeQuestion } from "test/factories/make-question";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 import { makeAnswer } from "test/factories/make-answer";
 import { NotAllowedError, ResourceNotFoundError } from "../../errors";
 
