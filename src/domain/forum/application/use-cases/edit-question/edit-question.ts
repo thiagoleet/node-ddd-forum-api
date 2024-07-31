@@ -1,7 +1,7 @@
 import { Either, left, right } from "@/core/either";
 import { QuestionAttachmentsRepository } from "../../repositories/question-attachments.repository";
 import { QuestionsRepository } from "../../repositories/questions.repository";
-import { NotAllowedError, ResourceNotFoundError } from "../../errors";
+import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 import {
   Question,
   QuestionAttachment,

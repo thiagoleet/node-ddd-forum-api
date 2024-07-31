@@ -2,7 +2,7 @@ import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-q
 import { EditQuestionUseCase } from "./edit-question";
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/core/entities";
-import { NotAllowedError, ResourceNotFoundError } from "../../errors";
+import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 import { InMemoryQuestionAttachmentsRepository } from "test/repositories/forum/in-memory-question-attachments.repository";
 import { makeQuestionAttachment } from "test/factories/make-question-attachment";
 

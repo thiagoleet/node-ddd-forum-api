@@ -4,7 +4,7 @@ import { InMemoryQuestionCommentsRepository } from "test/repositories/forum/in-m
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/core/entities";
 import { QuestionComment } from "@/domain/forum/enterprise/entities";
-import { ResourceNotFoundError } from "../../errors";
+import { ResourceNotFoundError } from "@/core/errors";
 
 describe("CommentOnQuestionUseCase", () => {
   let questionCommentsRepository: InMemoryQuestionCommentsRepository;
@@ -31,12 +31,11 @@ describe("CommentOnQuestionUseCase", () => {
     });
 
     const { comment } = value as { comment: QuestionComment };
+    const [item] = questionCommentsRepository.items;
 
     expect(comment.id).toBeTruthy();
-    expect(questionCommentsRepository._items[0].id).toEqual(comment.id);
-    expect(questionCommentsRepository._items[0].questionId).toEqual(
-      question.id
-    );
+    expect(item.id).toEqual(comment.id);
+    expect(item.questionId).toEqual(question.id);
   });
 
   it("should not be able to comment on a question if it not exists/matches", async () => {

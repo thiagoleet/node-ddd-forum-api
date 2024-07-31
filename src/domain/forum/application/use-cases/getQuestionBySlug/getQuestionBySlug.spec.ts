@@ -2,7 +2,7 @@ import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-q
 import { GetQuestionBySlugUseCase } from "./getQuestionBySlug";
 import { makeQuestion } from "test/factories/make-question";
 import { Question } from "@/domain/forum/enterprise/entities";
-import { ResourceNotFoundError } from "../../errors";
+import { ResourceNotFoundError } from "@/core/errors";
 
 describe("GetQuestionBySlugUseCase", () => {
   let repository: InMemoryQuestionsRepository;
