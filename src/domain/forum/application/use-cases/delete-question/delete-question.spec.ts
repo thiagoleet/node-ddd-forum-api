@@ -2,7 +2,7 @@ import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questio
 import { DeleteQuestionUseCase } from "./delete-question";
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
+import { NotAllowedError, ResourceNotFoundError } from "../../errors";
 import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments.repository";
 import { makeQuestionAttachment } from "test/factories/make-question-attachment";
 

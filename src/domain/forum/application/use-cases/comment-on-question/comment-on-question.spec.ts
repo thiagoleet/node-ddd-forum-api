@@ -4,7 +4,7 @@ import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { QuestionComment } from "@/domain/forum/enterprise/entities";
-import { ResourceNotFoundError } from "../errors";
+import { ResourceNotFoundError } from "../../errors";
 
 describe("CommentOnQuestionUseCase", () => {
   let questionCommentsRepository: InMemoryQuestionCommentsRepository;

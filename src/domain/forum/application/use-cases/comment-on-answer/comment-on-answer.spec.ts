@@ -3,7 +3,7 @@ import { CommentOnAnswerUseCase } from "./comment-on-answer";
 import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answer-comments.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { makeAnswer } from "test/factories/make-answer";
-import { ResourceNotFoundError } from "../errors";
+import { ResourceNotFoundError } from "../../errors";
 import { AnswerComment } from "@/domain/forum/enterprise/entities";
 
 describe("CommentOnAnswerUseCase", () => {

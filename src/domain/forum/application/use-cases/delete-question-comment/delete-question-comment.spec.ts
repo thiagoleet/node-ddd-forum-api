@@ -2,7 +2,7 @@ import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
 import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments.repository";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { makeQuestionComment } from "test/factories/make-question-comment";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
+import { NotAllowedError, ResourceNotFoundError } from "../../errors";
 
 describe("DeleteQuestionCommentUseCase", () => {
   let repository: InMemoryQuestionCommentsRepository;

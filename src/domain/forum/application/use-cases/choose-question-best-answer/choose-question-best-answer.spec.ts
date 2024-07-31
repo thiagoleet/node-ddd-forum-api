@@ -4,7 +4,7 @@ import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer";
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
 import { makeAnswer } from "test/factories/make-answer";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
+import { NotAllowedError, ResourceNotFoundError } from "../../errors";
 
 describe("ChooseQuestionBestAnswerUseCase", () => {
   let questionsRepository: InMemoryQuestionsRepository;
