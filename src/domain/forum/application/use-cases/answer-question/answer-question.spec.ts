@@ -1,4 +1,4 @@
-import { InMemoryAnswersRepository } from "test/repositories/notification/in-memory-answers.repository";
+import { InMemoryAnswersRepository } from "test/repositories/forum/in-memory-answers.repository";
 import { AnswerQuestionUseCase } from ".";
 import { Answer } from "@/domain/forum/enterprise/entities";
 import { UniqueEntityID } from "@/core/entities";

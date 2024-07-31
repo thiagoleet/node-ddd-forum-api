@@ -1,5 +1,5 @@
 import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
-import { InMemoryQuestionCommentsRepository } from "test/repositories/notification/in-memory-question-comments.repository";
+import { InMemoryQuestionCommentsRepository } from "test/repositories/forum/in-memory-question-comments.repository";
 import { UniqueEntityID } from "@/core/entities";
 import { makeQuestionComment } from "test/factories/make-question-comment";
 import { NotAllowedError, ResourceNotFoundError } from "../../errors";

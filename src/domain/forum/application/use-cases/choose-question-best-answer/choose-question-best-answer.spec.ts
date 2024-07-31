@@ -1,5 +1,5 @@
-import { InMemoryAnswersRepository } from "test/repositories/notification/in-memory-answers.repository";
-import { InMemoryQuestionsRepository } from "test/repositories/notification/in-memory-questions.repository";
+import { InMemoryAnswersRepository } from "test/repositories/forum/in-memory-answers.repository";
+import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-questions.repository";
 import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer";
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/core/entities";

@@ -1,9 +1,9 @@
 import { UniqueEntityID } from "@/core/entities";
 import { DeleteAnswerUseCase } from "./delete-answer";
-import { InMemoryAnswersRepository } from "test/repositories/notification/in-memory-answers.repository";
+import { InMemoryAnswersRepository } from "test/repositories/forum/in-memory-answers.repository";
 import { makeAnswer } from "test/factories/make-answer";
 import { NotAllowedError, ResourceNotFoundError } from "../../errors";
-import { InMemoryAnswerAttachmentsRepository } from "test/repositories/notification/in-memory-answer-attachments.repository";
+import { InMemoryAnswerAttachmentsRepository } from "test/repositories/forum/in-memory-answer-attachments.repository";
 import { makeAnswerAttachment } from "test/factories/make-answer-attachment";
 
 describe("DeleteAnswerUseCase", () => {

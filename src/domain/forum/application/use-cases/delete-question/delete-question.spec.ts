@@ -1,9 +1,9 @@
-import { InMemoryQuestionsRepository } from "test/repositories/notification/in-memory-questions.repository";
+import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-questions.repository";
 import { DeleteQuestionUseCase } from "./delete-question";
 import { makeQuestion } from "test/factories/make-question";
 import { UniqueEntityID } from "@/core/entities";
 import { NotAllowedError, ResourceNotFoundError } from "../../errors";
-import { InMemoryQuestionAttachmentsRepository } from "test/repositories/notification/in-memory-question-attachments.repository";
+import { InMemoryQuestionAttachmentsRepository } from "test/repositories/forum/in-memory-question-attachments.repository";
 import { makeQuestionAttachment } from "test/factories/make-question-attachment";
 
 describe("DeleteQuestionUseCase", () => {

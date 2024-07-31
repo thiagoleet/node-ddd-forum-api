@@ -1,4 +1,4 @@
-import { InMemoryQuestionsRepository } from "test/repositories/notification/in-memory-questions.repository";
+import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-questions.repository";
 import { makeQuestion } from "test/factories/make-question";
 import { FetchRecentQuestionsUseCase } from "./fetch-recent-questions";
 
