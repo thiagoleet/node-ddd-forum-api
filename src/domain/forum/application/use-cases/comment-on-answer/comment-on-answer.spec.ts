@@ -1,6 +1,6 @@
-import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers.repository";
+import { InMemoryAnswersRepository } from "test/repositories/notification/in-memory-answers.repository";
 import { CommentOnAnswerUseCase } from "./comment-on-answer";
-import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answer-comments.repository";
+import { InMemoryAnswerCommentsRepository } from "test/repositories/notification/in-memory-answer-comments.repository";
 import { UniqueEntityID } from "@/core/entities";
 import { makeAnswer } from "test/factories/make-answer";
 import { ResourceNotFoundError } from "../../errors";

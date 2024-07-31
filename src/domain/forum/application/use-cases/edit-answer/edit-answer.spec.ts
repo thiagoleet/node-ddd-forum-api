@@ -1,8 +1,8 @@
 import { EditAnswerUseCase } from "./edit-answer";
 import { UniqueEntityID } from "@/core/entities";
 import { NotAllowedError, ResourceNotFoundError } from "../../errors";
-import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers.repository";
-import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachments.repository";
+import { InMemoryAnswersRepository } from "test/repositories/notification/in-memory-answers.repository";
+import { InMemoryAnswerAttachmentsRepository } from "test/repositories/notification/in-memory-answer-attachments.repository";
 import { makeAnswer } from "test/factories/make-answer";
 import { makeAnswerAttachment } from "test/factories/make-answer-attachment";
 

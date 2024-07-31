@@ -1,4 +1,4 @@
-import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
+import { InMemoryQuestionsRepository } from "test/repositories/notification/in-memory-questions.repository";
 import { GetQuestionBySlugUseCase } from "./getQuestionBySlug";
 import { makeQuestion } from "test/factories/make-question";
 import { Question } from "@/domain/forum/enterprise/entities";

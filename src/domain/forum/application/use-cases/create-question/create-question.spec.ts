@@ -1,4 +1,4 @@
-import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
+import { InMemoryQuestionsRepository } from "test/repositories/notification/in-memory-questions.repository";
 import { CreateQuestionUseCase } from "./create-question";
 import { Question } from "@/domain/forum/enterprise/entities";
 import { UniqueEntityID } from "@/core/entities";
