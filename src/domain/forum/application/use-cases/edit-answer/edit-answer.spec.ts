@@ -3,8 +3,8 @@ import { UniqueEntityID } from "@/core/entities";
 import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 import { InMemoryAnswersRepository } from "test/repositories/forum/in-memory-answers.repository";
 import { InMemoryAnswerAttachmentsRepository } from "test/repositories/forum/in-memory-answer-attachments.repository";
-import { makeAnswer } from "test/factories/make-answer";
-import { makeAnswerAttachment } from "test/factories/make-answer-attachment";
+import { makeAnswer } from "test/factories/forum/make-answer";
+import { makeAnswerAttachment } from "test/factories/forum/make-answer-attachment";
 
 describe("EditAnswerUseCase", () => {
   let repository: InMemoryAnswersRepository;

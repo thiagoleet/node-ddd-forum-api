@@ -1,7 +1,7 @@
 import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
 import { InMemoryQuestionCommentsRepository } from "test/repositories/forum/in-memory-question-comments.repository";
 import { UniqueEntityID } from "@/core/entities";
-import { makeQuestionComment } from "test/factories/make-question-comment";
+import { makeQuestionComment } from "test/factories/forum/make-question-comment";
 import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 
 describe("DeleteQuestionCommentUseCase", () => {

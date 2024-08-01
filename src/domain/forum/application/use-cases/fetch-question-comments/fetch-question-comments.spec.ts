@@ -1,7 +1,7 @@
 import { FetchQuestionCommentsUseCase } from "./fetch-question-comments";
 import { UniqueEntityID } from "@/core/entities";
 import { InMemoryQuestionCommentsRepository } from "test/repositories/forum/in-memory-question-comments.repository";
-import { makeQuestionComment } from "test/factories/make-question-comment";
+import { makeQuestionComment } from "test/factories/forum/make-question-comment";
 
 describe("FetchQuestionCommentsUseCase", () => {
   let repository: InMemoryQuestionCommentsRepository;

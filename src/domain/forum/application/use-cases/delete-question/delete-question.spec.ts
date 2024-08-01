@@ -1,10 +1,10 @@
 import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-questions.repository";
 import { DeleteQuestionUseCase } from "./delete-question";
-import { makeQuestion } from "test/factories/make-question";
+import { makeQuestion } from "test/factories/forum/make-question";
 import { UniqueEntityID } from "@/core/entities";
 import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 import { InMemoryQuestionAttachmentsRepository } from "test/repositories/forum/in-memory-question-attachments.repository";
-import { makeQuestionAttachment } from "test/factories/make-question-attachment";
+import { makeQuestionAttachment } from "test/factories/forum/make-question-attachment";
 
 describe("DeleteQuestionUseCase", () => {
   let repository: InMemoryQuestionsRepository;
