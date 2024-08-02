@@ -65,7 +65,14 @@ export class Question extends AggregateRoot<QuestionProps> {
   }
 
   set bestAnswerId(value: UniqueEntityID | undefined) {
-    if (value && value !== this.props.bestAnswerId) {
+    if (value === undefined) {
+      return;
+    }
+
+    if (
+      this.props.bestAnswerId === undefined ||
+      !this.props.bestAnswerId.equals(value)
+    ) {
       this.addDomainEvent(new QuestionBestAnswerChoosenEvent(this, value));
     }
 
