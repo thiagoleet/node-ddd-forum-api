@@ -1,10 +1,10 @@
-import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
+import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-questions.repository";
 import { EditQuestionUseCase } from "./edit-question";
-import { makeQuestion } from "test/factories/make-question";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
-import { InMemoryQuestionAttachmentsRepository } from "test/repositories/in-memory-question-attachments.repository";
-import { makeQuestionAttachment } from "test/factories/make-question-attachment";
+import { makeQuestion } from "test/factories/forum/make-question";
+import { UniqueEntityID } from "@/core/entities";
+import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
+import { InMemoryQuestionAttachmentsRepository } from "test/repositories/forum/in-memory-question-attachments.repository";
+import { makeQuestionAttachment } from "test/factories/forum/make-question-attachment";
 
 describe("EditQuestionUseCase", () => {
   let repository: InMemoryQuestionsRepository;

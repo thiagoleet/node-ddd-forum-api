@@ -1,10 +1,10 @@
-import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers.repository";
-import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions.repository";
+import { InMemoryAnswersRepository } from "test/repositories/forum/in-memory-answers.repository";
+import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-questions.repository";
 import { ChooseQuestionBestAnswerUseCase } from "./choose-question-best-answer";
-import { makeQuestion } from "test/factories/make-question";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
-import { makeAnswer } from "test/factories/make-answer";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
+import { makeQuestion } from "test/factories/forum/make-question";
+import { UniqueEntityID } from "@/core/entities";
+import { makeAnswer } from "test/factories/forum/make-answer";
+import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 
 describe("ChooseQuestionBestAnswerUseCase", () => {
   let questionsRepository: InMemoryQuestionsRepository;

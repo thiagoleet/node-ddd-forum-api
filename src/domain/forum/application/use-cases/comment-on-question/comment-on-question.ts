@@ -1,9 +1,9 @@
 import { QuestionComment } from "@/domain/forum/enterprise/entities";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
+import { UniqueEntityID } from "@/core/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { QuestionCommentRepository } from "../../repositories/question-comments.repository";
 import { Either, left, right } from "@/core/either";
-import { ResourceNotFoundError } from "../errors";
+import { ResourceNotFoundError } from "@/core/errors";
 
 interface CommentOnQuestionInput {
   authorId: string;

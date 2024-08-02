@@ -1,7 +1,7 @@
 import { FetchQuestionCommentsUseCase } from "./fetch-question-comments";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
-import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments.repository";
-import { makeQuestionComment } from "test/factories/make-question-comment";
+import { UniqueEntityID } from "@/core/entities";
+import { InMemoryQuestionCommentsRepository } from "test/repositories/forum/in-memory-question-comments.repository";
+import { makeQuestionComment } from "test/factories/forum/make-question-comment";
 
 describe("FetchQuestionCommentsUseCase", () => {
   let repository: InMemoryQuestionCommentsRepository;

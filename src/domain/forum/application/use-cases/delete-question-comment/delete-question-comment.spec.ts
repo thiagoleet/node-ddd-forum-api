@@ -1,8 +1,8 @@
 import { DeleteQuestionCommentUseCase } from "./delete-question-comment";
-import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments.repository";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
-import { makeQuestionComment } from "test/factories/make-question-comment";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
+import { InMemoryQuestionCommentsRepository } from "test/repositories/forum/in-memory-question-comments.repository";
+import { UniqueEntityID } from "@/core/entities";
+import { makeQuestionComment } from "test/factories/forum/make-question-comment";
+import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 
 describe("DeleteQuestionCommentUseCase", () => {
   let repository: InMemoryQuestionCommentsRepository;
@@ -20,14 +20,14 @@ describe("DeleteQuestionCommentUseCase", () => {
       },
       new UniqueEntityID("comment-id")
     );
-    repository._items.push(comment);
+    repository.create(comment);
 
     await sut.execute({
       authorId: "author-id",
       questionCommentId: "comment-id",
     });
 
-    expect(repository._items).toHaveLength(0);
+    expect(repository.items).toHaveLength(0);
   });
 
   it("should not be able to delete a comment on a question if it not exists/matches", async () => {
@@ -45,7 +45,7 @@ describe("DeleteQuestionCommentUseCase", () => {
       { authorId: new UniqueEntityID("author-id") },
       new UniqueEntityID("comment-id")
     );
-    repository._items.push(comment);
+    repository.create(comment);
 
     const result = await sut.execute({
       authorId: "wrong-author-id",

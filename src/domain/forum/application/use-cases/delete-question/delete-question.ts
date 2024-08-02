@@ -1,6 +1,6 @@
 import { Either, left, right } from "@/core/either";
 import { QuestionsRepository } from "../../repositories/questions.repository";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
+import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 
 interface DeleteQuestionInput {
   authorId: string;

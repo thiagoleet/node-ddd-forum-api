@@ -2,7 +2,7 @@ import { Either, left, right } from "@/core/either";
 import { Question } from "@/domain/forum/enterprise/entities";
 import { QuestionsRepository } from "../../repositories/questions.repository";
 import { AnswersRepository } from "../../repositories/answers.repository";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
+import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
 
 interface ChooseQuestionBestAnswerInput {
   answerId: string;

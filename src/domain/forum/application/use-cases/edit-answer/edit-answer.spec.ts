@@ -1,10 +1,10 @@
 import { EditAnswerUseCase } from "./edit-answer";
-import { UniqueEntityID } from "@/domain/forum/enterprise/entities/value-objects";
-import { NotAllowedError, ResourceNotFoundError } from "../errors";
-import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers.repository";
-import { InMemoryAnswerAttachmentsRepository } from "test/repositories/in-memory-answer-attachments.repository";
-import { makeAnswer } from "test/factories/make-answer";
-import { makeAnswerAttachment } from "test/factories/make-answer-attachment";
+import { UniqueEntityID } from "@/core/entities";
+import { NotAllowedError, ResourceNotFoundError } from "@/core/errors";
+import { InMemoryAnswersRepository } from "test/repositories/forum/in-memory-answers.repository";
+import { InMemoryAnswerAttachmentsRepository } from "test/repositories/forum/in-memory-answer-attachments.repository";
+import { makeAnswer } from "test/factories/forum/make-answer";
+import { makeAnswerAttachment } from "test/factories/forum/make-answer-attachment";
 
 describe("EditAnswerUseCase", () => {
   let repository: InMemoryAnswersRepository;
