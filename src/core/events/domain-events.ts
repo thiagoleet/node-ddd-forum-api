@@ -45,6 +45,14 @@ export class DomainEvents {
     }
   }
 
+  /**
+   * Register a subscriber
+   *
+   * @static
+   * @param {DomainEventCallback} callback
+   * @param {string} eventClassName
+   * @memberof DomainEvents
+   */
   public static register(
     callback: DomainEventCallback,
     eventClassName: string
