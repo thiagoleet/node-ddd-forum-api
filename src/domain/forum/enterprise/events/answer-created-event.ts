@@ -11,6 +11,10 @@ export class AnswerCreatedEvent implements DomainEvent {
     this.ocurredAt = new Date();
   }
 
+  get answer(): Answer {
+    return this._answer;
+  }
+
   public getAggregateId(): UniqueEntityID {
     return this._answer.id;
   }

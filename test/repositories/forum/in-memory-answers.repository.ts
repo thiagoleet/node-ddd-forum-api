@@ -1,3 +1,4 @@
+import { DomainEvents } from "@/core/events";
 import {
   calculateOffset,
   ITEMS_PER_PAGE,
@@ -20,6 +21,7 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
   async create(answer: Answer): Promise<void> {
     this._items.push(answer);
+    DomainEvents.dispatchEventsForAggregate(answer.id);
   }
 
   async findById(id: string): Promise<Answer | null> {
@@ -45,11 +47,12 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     return answers;
   }
 
-  async save(question: Answer): Promise<void> {
-    const index = this._items.findIndex((item) => item.id === question.id);
+  async save(answer: Answer): Promise<void> {
+    const index = this._items.findIndex((item) => item.id === answer.id);
 
     if (index >= 0) {
-      this._items[index] = question;
+      this._items[index] = answer;
+      DomainEvents.dispatchEventsForAggregate(answer.id);
     }
   }
 }
