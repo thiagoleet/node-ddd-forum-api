@@ -1,3 +1,4 @@
+import { DomainEvents } from "@/core/events";
 import {
   calculateOffset,
   ITEMS_PER_PAGE,
@@ -20,6 +21,7 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
 
   async create(question: Question): Promise<void> {
     this._items.push(question);
+    DomainEvents.dispatchEventsForAggregate(question.id);
   }
 
   async delete(question: Question): Promise<void> {
@@ -43,6 +45,7 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
 
     if (index >= 0) {
       this._items[index] = question;
+      DomainEvents.dispatchEventsForAggregate(question.id);
     }
   }
 
