@@ -1,21 +1,46 @@
+import { vi, MockInstance } from "vitest";
 import { makeAnswer } from "test/factories/forum/make-answer";
 import { OnAnswerCreated } from "./on-answer-created";
 import { InMemoryAnswersRepository } from "test/repositories/forum/in-memory-answers.repository";
-import { InMemoryAnswerAttachmentsRepository } from "test/repositories/forum/in-memory-answer-attachments.repository";
+import { InMemoryQuestionsRepository } from "test/repositories/forum/in-memory-questions.repository";
+import { SendNotificationUseCase } from "../../use-cases/send-notification";
+import { InMemoryNotificationsRepository } from "test/repositories/notification/in-memory-notifications.repository";
+import { makeQuestion } from "test/factories/forum/make-question";
+import { waitFor } from "test/utils/wait-for";
 
 describe("OnAnswerCreated", () => {
-  let repository: InMemoryAnswersRepository;
-  let attachmentsRepository: InMemoryAnswerAttachmentsRepository;
+  let answersRepository: InMemoryAnswersRepository;
+  let questionsRepository: InMemoryQuestionsRepository;
+  let sendNotificationUseCase: SendNotificationUseCase;
+  let notificationsRepository: InMemoryNotificationsRepository;
+
+  let sendNotificationSpy: MockInstance;
 
   beforeEach(() => {
-    attachmentsRepository = new InMemoryAnswerAttachmentsRepository();
-    repository = new InMemoryAnswersRepository(attachmentsRepository);
+    answersRepository = new InMemoryAnswersRepository();
+    questionsRepository = new InMemoryQuestionsRepository();
+    notificationsRepository = new InMemoryNotificationsRepository();
+    sendNotificationUseCase = new SendNotificationUseCase(
+      notificationsRepository
+    );
+
+    sendNotificationSpy = vi.spyOn(sendNotificationUseCase, "execute");
+
+    new OnAnswerCreated(questionsRepository, sendNotificationUseCase);
   });
 
   it("should send a notification when an answer is created", async () => {
-    const _handler = new OnAnswerCreated();
-    const answer = makeAnswer();
+    // Creating a question
+    const question = makeQuestion();
+    await questionsRepository.create(question);
 
-    await repository.create(answer);
+    // Creating an answer
+    const answer = makeAnswer({ questionId: question.id });
+    await answersRepository.create(answer);
+
+    // Checking if the notification was sent
+    await waitFor(() => {
+      expect(sendNotificationSpy).toHaveBeenCalled();
+    });
   });
 });
